@@ -7,6 +7,14 @@ import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
  * two circumstances: (1) when a build fails or is unstable (2) when a
  * previously-unstable/failed build now succeeds (_ie_ is fixed).
  *
+ * Example usage within a declarative pipeline:
+ *
+ *    steps {
+ *        sendEmail currentBuild, ['example@example.com']
+ *    }
+ *
+ * Note that `currentBuild` is a Jenkins-provided object that is always available.
+ *
  * @param currentBuild a Jenkins RunWrapper object for the current build
  * @param emailList a list of recipients' email addresses
  */
