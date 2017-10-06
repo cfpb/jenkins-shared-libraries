@@ -2,6 +2,14 @@
 
 TODO description tk
 
+TODO add some background, referring back to https://github.com/cfpb/jenkins-automation/blob/master/src/main/groovy/jenkins/automation/utils/CommonUtils.groovy#L64
+
+TODO maybe because we no longer have the `triggers`, 'fixed' emails no
+longer have 'Fixed' in the subject line, but instead say 'Building'. It would
+be nice if we could figure out why this is, and then get the 'Fixed' label
+back in the subject line. Note however that emails about failing builds do
+still say 'Failure' and 'Still Failing' in the subject.
+
 
 ## Getting help
 
