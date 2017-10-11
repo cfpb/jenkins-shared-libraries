@@ -1,6 +1,6 @@
 # CFPB Jenkins Pipeline Shared Libraries
 
-This is a collecitons of shared libraries to be used with
+This is a colleciton of shared libraries to be used with
 [Jenkins Pipelines](https://jenkins.io/doc/book/pipeline/)
 
   - **Technology stack**: Written in groovy/Jenkins Pipeline DSL. Requires Jenkins
@@ -16,7 +16,7 @@ tested.
 
 These shared libraries may be accessed one of three ways:
 1. Add this repo to 'Global Pipeline Libraries' in the Jenkins UI.
-1. Include a `libraries` blocking in declarative pipeline syntax.
+1. Include a `libraries` block in declarative pipeline syntax.
 1. Include this library in an `@Library` statement in a Pipeline script.
 
 ### Global Pipeline Libraries
@@ -45,8 +45,8 @@ script dynamically by adding it to the `@Library` block within a Pipeline script
 
 ## Usage
 
-Currently this repo has a `sendEmail` var that can be inovked after
-importing it. Once the entire share library has been imported, `sendEmail`
+Currently this repo has a `sendEmail` var that can be invoked after
+importing it. Once the entire shared library has been imported, `sendEmail`
 is available at the top level. E.g.
 
 ```
