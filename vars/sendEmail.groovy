@@ -25,7 +25,7 @@ def call(RunWrapper currentBuild, List<String> emailList) {
 
     // Unfortunately emailext does not expose the same triggers functionality in
     // its declarative pipeline interface that it does in its Job DSL interface.
-    // As a result we have to implement the trigger logic in an a more ad hoc
+    // As a result we have to implement the trigger logic in a more ad hoc
     // manner. NB: we avoided Result#fromString (even though it would be nicer)
     // because Jenkins's sandboxed-Groovy mode does not allow the method by default.
 

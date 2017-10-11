@@ -1,36 +1,98 @@
-# CFPB Jenkins pipeline shared libraries
+# CFPB Jenkins Pipeline Shared Libraries
 
-TODO description tk
+This is a collecitons of shared libraries to be used with
+[Jenkins Pipelines](https://jenkins.io/doc/book/pipeline/)
 
-TODO add some background, referring back to https://github.com/cfpb/jenkins-automation/blob/master/src/main/groovy/jenkins/automation/utils/CommonUtils.groovy#L64
+  - **Technology stack**: Written in groovy/Jenkins Pipeline DSL. Requires Jenkins
+  - **Status**: This repo is intended to be an ongoing effort to collect useful Pipeline libraries.
 
-TODO maybe because we no longer have the `triggers`, 'fixed' emails no
+## Dependencies
+
+This project is dependent on Jenkins Pipeline and
+Jenkins >= 2.46.3, though some earlier versions may work, they have not been
+tested.
+
+## Installation
+
+These shared libraries may be accessed one of three ways:
+1. Add this repo to 'Global Pipeline Libraries' in the Jenkins UI.
+1. Include a `libraries` blocking in declarative pipeline syntax.
+1. Include this library in an `@Library` statement in a Pipeline script.
+
+### Global Pipeline Libraries
+
+See [this article](https://jenkins.io/doc/book/pipeline/shared-libraries/#global-shared-libraries)
+about adding shared libraries via the Jenkins UI.
+
+![](https://jenkins.io/doc/book/resources/pipeline/add-global-pipeline-libraries.png)
+
+### Within Pipeline Script
+
+The declarative way to include libraries is the following.
+
+```
+libraries {
+    lib('github.com/cfpb/jenkins-shared-libraries')
+}
+```
+
+Since this repo is hosted on github.com, it's easy to include it in all
+script dynamically by adding it to the `@Library` block within a Pipeline script
+
+```
+@Library('github.com/cfpb/jenkins-pipeline-shared-libraries') _
+```
+
+## Usage
+
+Currently this repo has a `sendEmail` var that can be inovked after
+importing it. Once the entire share library has been imported, `sendEmail`
+is available at the top level. E.g.
+
+```
+pipeline {
+    agent { label "master" }
+
+    libraries {
+        lib('github.com/cfpb/jenkins-shared-libraries')
+    }
+
+    stages {
+        stage("Echostage") {
+            steps {
+               echo "foo"
+            }
+        }
+    }
+    post {
+        always {
+            script {
+                sendEmail(currentBuild, ['testemail@domain.tld'])
+            }
+        }
+    }
+}"""
+```
+
+## TODO
+Maybe because we no longer have the `triggers`, 'fixed' emails no
 longer have 'Fixed' in the subject line, but instead say 'Building'. It would
 be nice if we could figure out why this is, and then get the 'Fixed' label
 back in the subject line. Note however that emails about failing builds do
 still say 'Failure' and 'Still Failing' in the subject.
 
-
 ## Getting help
 
-tk
-
-Instruct users how to get help with this software; this might include links to an issue tracker, wiki, mailing list, etc.
-
-**Example**
-
-If you have questions, concerns, bug reports, etc, please file an issue in this repository's Issue Tracker.
+If you have any trouble working with this repo, please open a github issue.
 
 ## Getting involved
 
-tk
+Adding libraries to this repo is welcome and encouraged. Should you have
+an idea for a useful library or an improvement for an existing one fork
+this repo and open a PR.
 
-This section should detail why people should get involved and describe key areas you are
-currently focusing on; e.g., trying to get feedback on features, fixing certain bugs, building
-important pieces, etc.
-
-General instructions on _how_ to contribute should be stated with a link to [CONTRIBUTING](CONTRIBUTING.md).
-
+General instructions on contributing can be found in
+[CONTRIBUTING](CONTRIBUTING.md).
 
 ----
 
@@ -38,3 +100,12 @@ General instructions on _how_ to contribute should be stated with a link to [CON
 1. [TERMS](TERMS.md)
 2. [LICENSE](LICENSE)
 3. [CFPB Source Code Policy](https://github.com/cfpb/source-code-policy/)
+
+
+----
+
+## Credits and references
+
+1. [Jenkins Pipeline](https://jenkins.io/doc/book/pipeline/shared-libraries/)
+2. [Jenkins Automation](https://github.com/cfpb/jenkins-automation)
+3. The wonderful [Fabric8](https://github.com/fabric8io/jenkins-pipeline-library) repo
