@@ -1,6 +1,6 @@
 # CFPB Jenkins Pipeline Shared Libraries
 
-This is a colleciton of shared libraries to be used with
+This is a collection of shared libraries to be used with
 [Jenkins Pipelines](https://jenkins.io/doc/book/pipeline/)
 
   - **Technology stack**: Written in groovy/Jenkins Pipeline DSL. Requires Jenkins
